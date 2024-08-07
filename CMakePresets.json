@@ -11,16 +11,13 @@
       "displayName": "default",
       "description": "Default preset that are inherited by all",
       "generator": "Ninja",
-      "hidden": true,
-      "environment": {
-        "PROJECT_NAME": "MyGodotExtention"
-      }
+      "hidden": true
     },
     {
       "name": "windows-debug",
       "displayName": "64bit Windows Debug",
       "inherits": "default",
-      "binaryDir": "${sourceDir}/../build_${env:PROJECT_NAME}_Windows-AMD64",
+      "binaryDir": "${sourceDir}/build/Windows-AMD64",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -52,7 +49,7 @@
       "name": "linux-debug",
       "displayName": "64bit Linux Debug",
       "inherits": "default",
-      "binaryDir": "${sourceDir}/../build_${env:PROJECT_NAME}_Linux-x86_64",
+      "binaryDir": "${sourceDir}/build/Linux-x86_64",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -76,7 +73,7 @@
       "name": "macOS-debug",
       "displayName": "64bit macOS Debug",
       "inherits": "default",
-      "binaryDir": "${sourceDir}/../build_${env:PROJECT_NAME}_Darwin-Universal",
+      "binaryDir": "${sourceDir}/build/Darwin-Universal",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
