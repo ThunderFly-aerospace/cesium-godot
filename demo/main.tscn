@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dkklw300gsxdi"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Example" type="Example" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
