@@ -9,20 +9,20 @@
 // Example:
 //
 // // Check if the version is less than 2.1.0
-// #if ${UPPER_PROJECT_NAME}_VERSION < ${UPPER_PROJECT_NAME}_VERSION_CHECK(2, 1, 0)
+// #if ${UNDER_PROJECT_NAME}_VERSION < ${UNDER_PROJECT_NAME}_VERSION_CHECK(2, 1, 0)
 //     // do stuff
 // #endif
 //
 // Returns an integer which may be used in comparisons
-#define ${UPPER_PROJECT_NAME}_VERSION_CHECK( major, minor, patch ) ( ((major)<<16) | ((minor)<<8) | (patch) )
+#define ${UNDER_PROJECT_NAME}_VERSION_CHECK( major, minor, patch ) ( ((major)<<16) | ((minor)<<8) | (patch) )
 
-#define ${UPPER_PROJECT_NAME}_VERSION_MAJOR  ${PROJECT_VERSION_MAJOR}
-#define ${UPPER_PROJECT_NAME}_VERSION_MINOR  ${PROJECT_VERSION_MINOR}
-#define ${UPPER_PROJECT_NAME}_VERSION_PATCH  ${PROJECT_VERSION_PATCH}
+#define ${UNDER_PROJECT_NAME}_VERSION_MAJOR  ${PROJECT_VERSION_MAJOR}
+#define ${UNDER_PROJECT_NAME}_VERSION_MINOR  ${PROJECT_VERSION_MINOR}
+#define ${UNDER_PROJECT_NAME}_VERSION_PATCH  ${PROJECT_VERSION_PATCH}
 
 // The version number of this extension. Used for #if comparisons.
 // This is generated using the version set in the CMake project macro.
-#define ${UPPER_PROJECT_NAME}_VERSION  ${UPPER_PROJECT_NAME}_VERSION_CHECK( ${PROJECT_VERSION_MAJOR}, ${PROJECT_VERSION_MINOR}, ${PROJECT_VERSION_PATCH} )
+#define ${UNDER_PROJECT_NAME}_VERSION  ${UNDER_PROJECT_NAME}_VERSION_CHECK( ${PROJECT_VERSION_MAJOR}, ${PROJECT_VERSION_MINOR}, ${PROJECT_VERSION_PATCH} )
 
 namespace VersionInfo {
     // Project name and version as a string.

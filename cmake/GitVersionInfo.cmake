@@ -22,6 +22,9 @@ if ( GIT_PROGRAM )
     set( VERSION_INPUT_FILE "src/Version.h.in" )
     set( VERSION_OUTPUT_FILE "${CMAKE_BINARY_DIR}/gen/Version.h" )
 
+    # replace dashes with underscores
+    string(REPLACE "-" "_" UNDER_PROJECT_NAME ${UPPER_PROJECT_NAME})
+
     configure_file( "${VERSION_INPUT_FILE}" "${VERSION_OUTPUT_FILE}" )
 
     target_sources( ${PROJECT_NAME}
