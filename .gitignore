@@ -1,2 +1,9 @@
 CMakeLists.txt.user
 .vscode/settings.json
+
+# build
+build/*
+
+# editors
+.vscode/*
+.vs/*
