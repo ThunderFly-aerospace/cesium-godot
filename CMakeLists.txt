@@ -118,25 +118,7 @@ include( ccache )
 # Adds a custom target to format all the code at once
 include( ClangFormat )
 
-# godot-cpp
-# From here: https://github.com/godotengine/godot-cpp
-if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
-    message(
-        FATAL_ERROR
-            "[${PROJECT_NAME}] The godot-cpp submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
-    )
-endif()
+# External libraries
+add_subdirectory( extern )
 
-set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
 
-add_subdirectory( extern/godot-cpp )
-
-set_target_properties( godot-cpp
-    PROPERTIES
-        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
-)
-
-target_link_libraries( ${PROJECT_NAME}
-    PRIVATE
-        godot-cpp
-)
