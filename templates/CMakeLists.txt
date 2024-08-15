@@ -17,7 +17,8 @@ endif()
 
 # Get our gdextension input file name based on build type
 string( TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE )
-set( GD_EXTENSION_FILE_INPUT template.${BUILD_TYPE}.gdextension.in )
+# set( GD_EXTENSION_FILE_INPUT template.${BUILD_TYPE}.gdextension.in )
+set( GD_EXTENSION_FILE_INPUT template.gdextension.in )
 
 # Workaround to add the "lib" prefix to the library in our template file if using MSYS2.
 if ( MINGW )
