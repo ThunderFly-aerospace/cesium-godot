@@ -1,7 +1,16 @@
-[gd_scene format=3 uid="uid://dkklw300gsxdi"]
+[gd_scene load_steps=2 format=3 uid="uid://dkklw300gsxdi"]
+
+[ext_resource type="Script" path="res://Example.gd" id="1_r7nus"]
 
 [node name="Main" type="Node3D"]
 
 [node name="Example" type="Example" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_r7nus")
+
+[node name="Label" type="Label" parent="Example"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Some label"

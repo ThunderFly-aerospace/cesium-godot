@@ -1,6 +1,6 @@
 [configuration]
 entry_symbol = "GDExtensionInit"
-compatibility_minimum = 4.1
+compatibility_minimum = 4.2
 
 [icons]
 Example = "icons/Example.svg"
@@ -9,3 +9,7 @@ Example = "icons/Example.svg"
 linux.debug.x86_64 = "lib/Linux-x86_64/libcesium-godot-d.so"
 macos.debug = "lib/Darwin-Universal/libcesium-godot-d.dylib"
 windows.debug.x86_64 = "lib/Windows-AMD64/cesium-godot-d.dll"
+
+linux.release.x86_64 = "lib/Linux-x86_64/libcesium-godot.so"
+macos.release = "lib/Darwin-universal/libcesium-godot.dylib"
+windows.release.x86_64 = "lib/Windows-AMD64/cesium-godot.dll"
