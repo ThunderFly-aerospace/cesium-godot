@@ -5,6 +5,8 @@
 #include "godot_cpp/core/class_db.hpp"
 #include "godot_cpp/variant/utility_functions.hpp"
 
+#include "Cesium3DTiles/Tileset.h"
+
 #include "Example.h"
 
 // Used to mark unused parameters to indicate intent and suppress warnings.
@@ -119,6 +121,14 @@ void ExampleRef::_notification( int inWhat )
         mPostInitialized = true;
     }
 }
+
+void Example::testCesiumNative() const
+{
+    Cesium3DTiles::Tileset tileset;
+
+    godot::UtilityFunctions::print(tileset.TypeName);
+}
+
 
 //// ExampleMin
 
@@ -591,6 +601,8 @@ bool Example::_has_point( const godot::Vector2 &inPoint ) const
 void Example::_bind_methods()
 {
     // Methods.
+    godot::ClassDB::bind_method( godot::D_METHOD("test_cesium"), &Example::testCesiumNative);
+
     godot::ClassDB::bind_method( godot::D_METHOD( "simple_func" ), &Example::simpleFunc );
     godot::ClassDB::bind_method( godot::D_METHOD( "simple_const_func" ),
                                  &Example::simpleConstFunc );

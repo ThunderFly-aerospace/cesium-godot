@@ -51,6 +51,9 @@ class Example : public godot::Control
     GDCLASS( Example, godot::Control )
 
 public:
+
+    void testCesiumNative() const;
+
     // Constants.
     enum Constants
     {
