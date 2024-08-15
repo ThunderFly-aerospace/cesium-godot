@@ -19,7 +19,7 @@ set_target_properties( godot-cpp
 
 
 # Cesium native wrapper 
-add_subdirectory( cesium-native )
+add_subdirectory( cesium-native EXCLUDE_FROM_ALL )
 
 add_library(cesium-native-wrapper INTERFACE)
 
