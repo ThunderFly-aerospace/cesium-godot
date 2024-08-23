@@ -10,13 +10,13 @@ endif()
 
 set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
 
-add_subdirectory( godot-cpp )
+add_subdirectory( godot-cpp EXCLUDE_FROM_ALL )
 
 set_target_properties( godot-cpp
     PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
 )
-
+    
 
 # Cesium native wrapper 
 add_subdirectory( cesium-native EXCLUDE_FROM_ALL )
