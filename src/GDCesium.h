@@ -8,9 +8,9 @@ namespace godot
     class ClassDB;
 };
 
-class GDExtensionTemplate : public godot::Object
+class GDCesium : public godot::Object
 {
-    GDCLASS( GDExtensionTemplate, godot::Object )
+    GDCLASS( GDCesium, godot::Object )
 
 public:
     static godot::String version();
