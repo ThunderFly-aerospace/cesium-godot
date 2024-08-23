@@ -7,7 +7,7 @@
 #include "godot_cpp/godot.hpp"
 
 #include "Example.h"
-#include "GDExtensionTemplate.h"
+#include "GDCesium.h"
 
 /// @file
 /// Register our classes with Godot.

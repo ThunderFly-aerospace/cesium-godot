@@ -3,7 +3,7 @@
 #include "godot_cpp/core/class_db.hpp"
 #include "godot_cpp/core/version.hpp"
 
-#include "GDExtensionTemplate.h"
+#include "GDCesium.h"
 #include "Version.h"
 
 /// @file
