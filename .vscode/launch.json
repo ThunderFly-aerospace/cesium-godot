@@ -23,6 +23,17 @@
             "visualizerFile": "${workspaceFolder}/.vscode/godot.natvis"
         },
         {
+            "name": "Windows Editor Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "godot.exe",
+            "args": [
+                "-e",
+                "--path", "demo"
+            ],
+            "cwd": "${workspaceRoot}"
+        },
+        {
             "name": "macOS/Linux Launch",
             "type": "lldb",
             "request": "launch",
