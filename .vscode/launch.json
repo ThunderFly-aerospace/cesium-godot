@@ -31,7 +31,8 @@
                 "-e",
                 "--path", "demo"
             ],
-            "cwd": "${workspaceRoot}"
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "CMake: install"
         },
         {
             "name": "macOS/Linux Launch",
