@@ -8,9 +8,13 @@ if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/godot-cpp/Makefile" )
     )
 endif()
 
+set( GODOT_ENABLE_HOT_RELOAD ON)
+set( HOT_RELOAD_ENABLED ON CACHE BOOL "" FORCE )
 set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
 
 add_subdirectory( godot-cpp EXCLUDE_FROM_ALL )
+
+target_compile_definitions( godot-cpp PUBLIC HOT_RELOAD_ENABLED)
 
 set_target_properties( godot-cpp
     PROPERTIES
