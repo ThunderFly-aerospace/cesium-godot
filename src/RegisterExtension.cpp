@@ -5,9 +5,15 @@
 #include "godot_cpp/core/class_db.hpp"
 #include "godot_cpp/core/defs.hpp"
 #include "godot_cpp/godot.hpp"
+#include "godot_cpp/classes/editor_plugin_registration.hpp"
 
 #include "Example.h"
 #include "GDCesium.h"
+#include "CesiumTileset.h"
+#include "CesiumTilesetPlugin.h"
+#include "CesiumTilesetInspector.h" 
+
+using namespace CesiumGodot;
 
 /// @file
 /// Register our classes with Godot.
@@ -21,18 +27,27 @@ namespace
     /// @see GDExtensionInit
     void initializeExtension( godot::ModuleInitializationLevel p_level )
     {
-        if ( p_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE )
+        if ( p_level == godot::MODULE_INITIALIZATION_LEVEL_SCENE )
         {
-            return;
+            godot::ClassDB::register_class<ExampleRef>();
+            godot::ClassDB::register_class<ExampleMin>();
+            godot::ClassDB::register_class<Example>();
+            godot::ClassDB::register_class<ExampleVirtual>( true );
+            godot::ClassDB::register_abstract_class<ExampleAbstract>();
+
+            godot::ClassDB::register_class<GDCesium>();
+            godot::ClassDB::register_class<CesiumTileset>();
         }
 
-        godot::ClassDB::register_class<ExampleRef>();
-        godot::ClassDB::register_class<ExampleMin>();
-        godot::ClassDB::register_class<Example>();
-        godot::ClassDB::register_class<ExampleVirtual>( true );
-        godot::ClassDB::register_abstract_class<ExampleAbstract>();
+        if (p_level == godot::MODULE_INITIALIZATION_LEVEL_EDITOR )
+        {
+            // godot::ClassDB::register_class<CesiumTilesetPlugin>();
+            godot::ClassDB::register_internal_class<CesiumTilesetPlugin>();
+            godot::EditorPlugins::add_by_type<CesiumTilesetPlugin>();
+            godot::ClassDB::register_internal_class<CesiumTilesetInspector>();
+            // godot::EditorPlugins::add_by_type<CesiumTilesetInspector>();
+        }
 
-        godot::ClassDB::register_class<GDCesium>();
     }
 
     /// @brief Called by Godot to let us do any cleanup.

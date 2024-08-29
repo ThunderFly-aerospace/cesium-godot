@@ -746,7 +746,7 @@ void Example::_bind_methods()
 
 void Example::_notification( int inWhat )
 {
-    godot::UtilityFunctions::print( "Notification: ", godot::String::num( inWhat ) );
+    // godot::UtilityFunctions::print( "Notification: ", godot::String::num( inWhat ) );
 }
 
 bool Example::_set( const godot::StringName &inName, const godot::Variant &inValue )

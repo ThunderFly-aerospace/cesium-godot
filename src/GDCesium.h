@@ -8,6 +8,9 @@ namespace godot
     class ClassDB;
 };
 
+namespace CesiumGodot
+{
+
 class GDCesium : public godot::Object
 {
     GDCLASS( GDCesium, godot::Object )
@@ -19,3 +22,5 @@ public:
 private:
     static void _bind_methods();
 };
+
+}

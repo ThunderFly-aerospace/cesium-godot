@@ -9,6 +9,8 @@
 /// @file
 /// GDExtensionTemplate example implementation.
 
+using namespace CesiumGodot;
+
 /*!
 @brief Get the version string for this extension.
 
