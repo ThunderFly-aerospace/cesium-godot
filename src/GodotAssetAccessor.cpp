@@ -4,6 +4,7 @@
 #include "CesiumAsync/IAssetResponse.h"
 
 #include "godot_cpp/variant/dictionary.hpp"
+#include "godot_cpp/variant/utility_functions.hpp"
 
 #include <memory>
 #include <utility> 
@@ -13,8 +14,42 @@ namespace CesiumGodot
     std::pair<std::string, CesiumAsync::HttpHeaders> parseHeaders(godot::Dictionary gdHeaders)
     {
         CesiumAsync::HttpHeaders csHeaders;
+        std::string contentType;
 
-        return {"",  std::move(csHeaders) };
+        const godot::Array& keys = gdHeaders.keys();
+
+        for (int i = 0; i < keys.size(); ++i)
+        {
+            const godot::String& key = keys[i];
+            const godot::String& val = gdHeaders[key];
+            
+            std::string cKey = key.utf8().get_data();
+            std::string cVal = val.utf8().get_data();
+
+            if (key.contains("content-type"))
+            {
+                contentType = cVal;
+            }
+
+            csHeaders.insert({cKey, cVal});
+        }
+        return { contentType, csHeaders };
+    }
+
+    gsl::span<const std::byte> readResponseBody(godot::Ref<godot::HTTPClient> httpClient)
+    {
+        godot::PackedByteArray responseBody;
+
+        while (httpClient->get_status() == godot::HTTPClient::STATUS_BODY)
+        {
+            httpClient->poll();
+            auto chunk = httpClient->read_response_body_chunk();
+            if (chunk.size() != 0) continue;
+            responseBody = responseBody + chunk;
+        }
+        godot::UtilityFunctions::print("Bytes received: " + responseBody.size());
+
+        return gsl::span(reinterpret_cast<const std::byte*>(responseBody.ptr()), responseBody.size());
     }
 
     class GodotAssetResponse : public CesiumAsync::IAssetResponse
@@ -22,25 +57,30 @@ namespace CesiumGodot
     public:
 
         GodotAssetResponse(godot::Ref<godot::HTTPClient> httpClient)
-            : m_httpClient(httpClient), m_statusCode(static_cast<uint16_t>(httpClient->get_response_code()))
+            : m_statusCode(static_cast<uint16_t>(httpClient->get_response_code())),
+            m_body(readResponseBody(httpClient))
         {
-            
+            auto [contentType, headers] = parseHeaders(httpClient->get_response_headers_as_dictionary());
+            this->m_contentType = contentType;
+            this->m_headers = headers;
+            godot::UtilityFunctions::print("Response data size: ", httpClient->get_response_body_length());
         }
 
         virtual uint16_t statusCode() const override { return m_statusCode; }
 
-        virtual std::string contentType() const override { return ""; }
+        virtual std::string contentType() const override { return m_contentType; }
 
         virtual const CesiumAsync::HttpHeaders& headers() const override { return m_headers; }
 
-        virtual gsl::span<const std::byte> data() const override { return gsl::span<const std::byte>(); }
+        virtual gsl::span<const std::byte> data() const override { return m_body; }
 
     private:
+
 
         uint16_t m_statusCode = 0;
         std::string m_contentType;
         CesiumAsync::HttpHeaders m_headers;
-        godot::Ref<godot::HTTPClient> m_httpClient;
+        gsl::span<const std::byte> m_body;
     };
 
     class GodotAssetRequest : public CesiumAsync::IAssetRequest
