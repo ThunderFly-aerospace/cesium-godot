@@ -11,38 +11,44 @@ To use this locally on your machine, you will need the following:
 - (optional) **[ccache](https://ccache.dev/)** for faster rebuilds
 - (optional) **[clang-format](https://clang.llvm.org/docs/ClangFormat.html)** for linting and automatic code formatting (CI uses clang-format version 15)
 
-### Build & Install
+### Build instructions
 
-Here's an example of how to build & install a release version (use the terminal to run the following commands in the parent directory of this repo):
+Here's an example of how to build & install a debug version into the demo project:
 
-#### Not MSVC
+#### Clone the repository
 
 ```sh
-$ cmake -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
-$ cmake --build ./build --parallel
+$ git clone --recursive https://github.com/ThunderFly-aerospace/cesium-godot.git 
+```
+
+#### Build & Install
+
+```sh
+$ cmake -B ./build -G"Ninja" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="./demo/addons"
+$ cmake --build ./build
 $ cmake --install ./build
 ```
 
-#### MSVC
+This tells CMake to use `Ninja` generator. There is a list of generators [on the CMake site](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#cmake-generators) - pick the one you are using.
+
+**Note:** Even for multi-config generators you still have to specify `CMAKE_BUILD_TYPE`, because of the way [godot-cpp](https://github.com/godotengine/godot-cpp)'s build process is set up, hence there is not much use for this type of generators now. 
+
+#### Run demo project in Godot Editor
 
 ```sh
-$ cmake -B ./build -G"Visual Studio 17 2022"  -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
-$ cmake --build ./build --config Release
-$ cmake --install ./build
+$ godot -e --path ./demo
 ```
-
-This tells CMake to use `Visual Studio 2022`. There is a list of Visual Studio generators [on the CMake site](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#visual-studio-generators) - pick the one you are using.
 
 ### Cmake Options
 
-This template defines the following additional CMake options:
+Additional CMake options:
 
 | Option                                                                   | Description                                      | Default                                                                                                 |
 | ------------------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
 | `CCACHE_PROGRAM`                                                         | Path to `ccache` for faster rebuilds             | This is automatically set **ON** if `ccache` is found. If you do not want to use it, set this to "".    |
 | `CLANG_FORMAT_PROGRAM`                                                   | Path to `clang-format` for code formatting.      | This is automatically set **ON** if `clang-format` is on. If you do not want to use it, set this to "". |
-| `${PROJECT_NAME_UPPERCASE}_WARN_EVERYTHING` (e.g. FOO_WARN_EVERYTHING)   | Turns on all warnings. (Not available for MSVC.) | **OFF** (too noisy, but can be useful sometimes)                                                        |
-| `${PROJECT_NAME_UPPERCASE}_WARNING_AS_ERROR` (e.g. FOO_WARNING_AS_ERROR) | Turns warnings into errors.                      | **ON**                                                                                                  |
+| `GDCESIUM_WARN_EVERYTHING`  | Turns on all warnings. (Not available for MSVC.) | **OFF** (too noisy, but can be useful sometimes)                                                        |
+| `GDCESIUM_WARNING_AS_ERROR` | Turns warnings into errors.                      | **ON**                                                                                                  |
 
 ## Credits
 
