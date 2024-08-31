@@ -10,16 +10,17 @@
             "name": "default",
             "displayName": "default",
             "description": "Default preset that are inherited by all",
-            "generator": "Ninja Multi-Config",
+            "generator": "Ninja",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/demo/addons"
             }
         },
         {
-            "name": "windows",
+            "name": "windows-mc",
             "displayName": "64bit Windows Multi-Config",
             "inherits": "default",
+            "generator": "Ninja Multi-Config",
             "binaryDir": "${sourceDir}/build/Windows-AMD64",
             "condition": {
                 "type": "equals",
@@ -36,7 +37,8 @@
             },
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe"
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {

@@ -39,6 +39,8 @@ This tells CMake to use `Ninja` generator. There is a list of generators [on the
 $ godot -e --path ./demo
 ```
 
+Additionally, basic VSCode configuration files are provided, including launch configuration to debug the extension and `CMakePresets.json` for easier build system configuration (by default uses `Ninja`).
+
 ### Cmake Options
 
 Additional CMake options:
