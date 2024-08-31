@@ -1,13 +1,11 @@
 # SPDX-License-Identifier: Unlicense
 # by Andy Maloney <asmaloney@gmail.com>
 
-string( TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE )
-
 if ( NOT MSVC )
-    option( ${PROJECT_NAME_UPPERCASE}_WARN_EVERYTHING "Turn on all warnings (not recommended - used for lib development)" OFF )
+    option( GDCESIUM_WARN_EVERYTHING "Turn on all warnings (not recommended - used for lib development)" OFF )
 endif()
 
-option( ${PROJECT_NAME_UPPERCASE}_WARNING_AS_ERROR "Treat warnings as errors" ON )
+option( GDCESIUM_WARNING_AS_ERROR "Treat warnings as errors" ON )
 
 # Add warnings based on compiler
 # Set some helper variables for readability
@@ -88,7 +86,7 @@ function( set_warn_everything )
     )
 endfunction()
 
-if ( NOT MSVC AND ${PROJECT_NAME_UPPERCASE}_WARN_EVERYTHING )
+if ( NOT MSVC AND GDCESIUM_WARN_EVERYTHING )
     set_warn_everything()
 endif()
 
@@ -110,6 +108,6 @@ function( set_warning_as_error )
     endif()
 endfunction()
 
-if ( ${PROJECT_NAME_UPPERCASE}_WARNING_AS_ERROR )
+if ( GDCESIUM_WARNING_AS_ERROR )
     set_warning_as_error()
 endif()
