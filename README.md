@@ -1,6 +1,12 @@
 # Cesium for Godot
 
-Work in progress. Milestones will be added to the project soon.
+**Development on this specific project is currently paused.** Battle Road, Inc. has received an official Cesium Ecosystem Grant to develop a Cesium plugin for Godot. Given their expertise and the official support for their effort, we are awaiting the results of their work.
+
+For more details see the Cessium official blog post: [Cesium Ecosystem Grant Supports Development of Cesium Plugin for Godot](https://cesium.com/blog/2024/09/26/cesium-plugin-for-godot/).
+
+It is likely that if Battle Road successfully delivers their plugin, this project will be discontinued.
+
+We recommend following the progress of the Battle Road project for the most up-to-date developments on Cesium integration for Godot.
 
 ## Contribution Guidelines
 
